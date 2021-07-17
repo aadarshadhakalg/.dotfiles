@@ -19,7 +19,7 @@ flutter doctor
 
 #Download commandlinetools
 cd /opt
-mkdir Android/Sdk/cmdline-tools/
+mkdir -p Android/Sdk/cmdline-tools/
 chmod -R 777 /opt/Android
 cd /opt/Android/Sdk/cmdline-tools
 
