@@ -1,0 +1,179 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    //"height": 32,
+    //"width": 1350,
+    // Choose the order of the modules
+    "modules-left": [
+        "sway/window",
+        "sway/mode"
+    ],
+    "modules-center": [
+        "sway/workspaces"
+    ],
+    "modules-right": [
+        "pulseaudio#sink",
+        "pulseaudio#source",
+        "idle_inhibitor",
+        "network",
+        "clock",
+        "custom/weather",
+        "battery",
+		"custom/github",
+        "custom/dunst",
+        "custom/power"
+    ],
+    // Modules configuration
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "format": "{icon}",
+        "numeric-first": false,
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "6",
+            "7": "7",
+            "8": "",
+            "9": "",
+            "10": "",
+        }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/window": {
+        "format": "{}",
+        "max-length": 50,
+        "tooltip": false
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip": false
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 5
+    },
+    "clock": {
+        "tooltip-format": "<big>{: %B %Y}</big>\n\n<tt><small>{calendar}</small></tt>",
+        "locale": "en_GB",
+        //"tooltip-format": "{:%A %B %d %Y | %H:%M}",
+        //"format": " {:%a %d %b  %I:%M %p}",	//12 hour format
+        "format": " {:%a %d  %H:%M}",
+        "format-alt": " {:%H:%M}",
+        //"timezones": [ "Kolkata" ],
+        //"max-length": 200
+        "interval": 5,
+        "tooltip": true
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-charging": " {capacity}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "tooltip": false
+    },
+    "network": {
+        // "interface": "wlp2s0", // (Optional) To force the use of this interface
+        "format": "⚠ Disabled",
+        "format-wifi": " {essid}",
+        "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
+        "format-disconnected": "⚠ Disconnected",
+        // "on-click": "connman-gtk",
+        "tooltip": false
+    },
+    "pulseaudio#sink": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        // "format-bluetooth-muted": "{icon} muted",
+        // "format-muted": "{icon} muted",
+        // "format-source": "",
+        // "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-scroll-up": "",
+        "on-scroll-down": "",
+        "tooltip": false
+    },
+    "pulseaudio#source": {
+        "format": "{format_source}",
+        "format-bluetooth": "{format_source}",
+        "format-bluetooth-muted": "{format_source}",
+        "format-muted": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": " {volume}%",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-scroll-up": "",
+        "on-scroll-down": "",
+        "tooltip": false
+    },
+    "custom/power": {
+        "format": "⏻",
+        "on-click": "nwgbar",
+        "tooltip": false,
+    },
+    "custom/dunst": {
+        "exec": "~/.config/waybar/scripts/dunst.sh",
+        "on-click": "dunstctl set-paused toggle",
+        "restart-interval": 1,
+        "tooltip": false,
+    },
+    "custom/github": {
+        "exec": "~/.config/waybar/scripts/github.sh",
+        "on-click": "xdg-open 'https://github.com/notifications'",
+        "restart-interval": 300,
+        "tooltip": false,
+    },
+    "custom/weather": {
+        "exec": "python ~/.config/waybar/scripts/weather.py",
+        "restart-interval": 300,
+        "return-type": "json",
+        "on-click": "xdg-open https://weather.com/en-IN/weather/today/l/$(cat $PRIV_ENV_FILE | grep weather_location | cut -d '=' -f 2)"
+        // "format-alt": "{alt}",
+    },
+}

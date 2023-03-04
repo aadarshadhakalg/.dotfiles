@@ -1,0 +1,204 @@
+/* =============================================================================
+ *
+ * Waybar configuration
+ *
+ * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+ *
+ * =========================================================================== */
+ 
+/* -----------------------------------------------------------------------------
+ * Keyframes
+ * -------------------------------------------------------------------------- */
+
+
+/*
+Polar Night
+nord0  #2e3440
+nord1  #3b4252
+nord2  #434c5e
+nord3  #4c566a
+Snow Storm
+nord4  #d8dee9
+nord5  #e5e9f0
+nord6  #eceff4
+Frost
+nord7  #8fbcbb
+nord8  #88c0d0
+nord9  #81a1c1
+nord10 #5e81ac
+Aurora
+nord11 #bf616a
+nord12 #d08770
+nord13 #ebcb8b
+nord14 #a3be8c
+nord15 #b48ead
+*/
+
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+ 
+/* Reset all styles */
+
+* {
+    color: #88c0d0;
+    border: 0;
+    border-radius: 10px;
+    padding: 0 0;
+    font-family: 'Inter Medium',FontAwesome,'JetBrainsMono Nerd Font';
+    font-size: 14px;
+    font-weight: 900;
+    padding-bottom:0px;
+}
+
+window#waybar {
+    background:#2e3440;
+    border-radius: 0px;
+}
+
+#workspaces button {
+    padding: 0px 8px;
+    color: #eceff4;
+    border-style: hidden;
+    font-size: 16px;
+    margin: 2px 5px;
+    background-color: #434c5e;
+}
+
+#workspaces button.focused {
+    border: 2px;
+    border-color: #88c0d0;
+    font-size: 16px;
+    border-style: solid;
+    border-radius: 10px;
+    margin: 1px 3px;
+    background-color: #2e3440;
+}
+
+#workspaces button:hover {
+    background: #5e81ac;
+}
+
+#clock, #battery, #idle_inhibitor, #network, #pulseaudio, #mode, #tray,
+#window, #custom-power, #custom-dunst, #custom-github, #custom-weather {
+    padding: 2px 8px;
+    background-color: #434c5e;
+    margin: 4px;
+}
+ 
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+
+ 
+#clock {
+ color:#a3beac;
+}
+
+#battery {
+    color: #d8dee9;
+}
+
+#battery.charging {
+    color: #81a1c1;
+}
+
+@keyframes blink {
+    to {
+        color: #4c566a;
+        background-color: #eceff4;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background: #bf616a;
+    color: #eceff4;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#network.disabled {
+    color:#2e3440;
+}
+
+#network{
+    color:#a3be8c;
+}
+
+#network.disconnected {
+    color: #2e3440;
+}
+
+#pulseaudio {
+    color: #e0a7e0;
+}
+
+#pulseaudio.sink.muted {
+    color: #2e3440;
+}
+
+#pulseaudio.sink:not(.muted) {
+    color: #b4eead;
+}
+
+#pulseaudio.source-muted {
+    color: #2e3440;
+}
+
+#idle_inhibitor {
+   color: #ebcb8b;
+   font-size: 16px;
+}
+
+#idle_inhibitor.deactivated {
+   color: #2e3440;
+}
+
+#custom-power{
+    color: #f00;
+    font-size: 16px;
+    padding-right: 10px;
+}
+
+#window{
+    min-width: 10px;
+}
+
+#mode{
+    color: #ebcb8b;
+}
+
+#custom-dunst {
+    color:#d0d7e0;
+}
+
+#custom-weather.severe {
+    color: #eb937d;
+}
+
+#custom-weather.sunnyDay {
+    color: #c2ca76;
+}
+
+#custom-weather.clearNight {
+    color: #acacac;
+}
+
+#custom-weather.cloudyFoggyDay, #custom-weather.cloudyFoggyNight {
+    color: #c2ddda;
+}
+
+#custom-weather.rainyDay, #custom-weather.rainyNight {
+    color: #5aaca5;
+}
+
+#custom-weather.showyIcyDay, #custom-weather.snowyIcyNight {
+    color: #d6e7e5;
+}
+
+#custom-weather.default {
+    color: #dbd9d8;
+}
